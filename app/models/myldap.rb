@@ -1,5 +1,6 @@
 require 'net/ldap'
 
+#noinspection SpellCheckingInspection
 class Myldap < ActiveRecord::Base
   unloadable
 
@@ -7,13 +8,13 @@ class Myldap < ActiveRecord::Base
   def get_data
     # Création de la collection data (hashset)
     data = {
-        "username"=>"auth_username",
-        "password"=>"auth_password",
-        "base"=>"auth_base",
-        "host"=>"ldap_host",
-        "port"=>"ldap_port",
-        "field"=>"filter_field",
-        "value"=>"filter_value",
+        :username=>"auth_username",
+        :password=>"auth_password",
+        :base=>"auth_base",
+        :host=>"ldap_host",
+        :port=>"ldap_port",
+        :field =>"filter_field",
+        :value=>"filter_value",
     }
     # Recupération des valeurs depuis la base de donnée
     data.each {
