@@ -1,3 +1,5 @@
+Version v-0.5
+
 # redmine_clruniv (0.2.0)
 Est une version adapté pour l'utilisation au sein de la faculté des sciences de l'université d'Angers
 
