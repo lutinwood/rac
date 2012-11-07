@@ -1,9 +1,25 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 one:
   id: 1
-  nom: MyString
+  name: MyString
+  identifier: MyString
   url: MyString
+  ldap: MyString
+  dn: MyString
+  username: MyString
+  password: MyString
+  host: MyString
+  port: 1
+  filter: MyString
 two:
   id: 2
-  nom: MyString
+  name: MyString
+  identifier: MyString
   url: MyString
+  ldap: MyString
+  dn: MyString
+  username: MyString
+  password: MyString
+  host: MyString
+  port: 1
+  filter: MyString

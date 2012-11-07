@@ -1,0 +1,71 @@
+<% content_for :header_tags do %>
+<%=stylesheet_link_tag 'anguniv', :plugin => 'redmine_clruniv' %>
+
+<% end %>
+
+<!--modification depuis version 0.2.1-->
+<center>
+  <table>
+<th>
+<h3>Membre de l'Université d'Angers</h3>
+</th>
+<th>
+<h3><%= l(:ang_local_auth)%></h3>
+</th>
+	<tr>
+	<!--<td id="in-cell">-->
+	<td class="news box">
+   <!--debut bloc CAS -->
+	     <% Cas.find(:all).each do |cas| %>
+            	 <%= link_to "",{
+			:controller => 'sso', 
+			:action => 'login',
+			:cas_id => "#{cas.identifier}", 
+			:back_url => params[:back_url]},
+			 :id => 'nav' %>
+   
+	<% end %>
+        <!-- fin du bloc CAS -->
+        <!-- début du bloc Externe -->	 
+</td>
+
+<td id="out" class="news box">
+ <!--Debut du formulaire -->
+  <% form_tag({:action => "login"}) do %>
+                <%= back_url_hidden_field_tag %>
+                        <p>
+                        <%= label_tag "#{l(:field_login)}" %>
+                        <%= text_field_tag 'username', nil, :class => "ruby_box" %>
+                        </p>
+		
+                        <p>
+                        <%= label_tag "#{l(:field_password)}" %>
+                        <%= password_field_tag 'password', nil, :class => "ruby_box" %>
+                        </p>
+                  <!--Autologin Option -->
+                  <% if Setting.autologin? %>
+                        <%= check_box_tag 'autologin' %> <%= l(:label_stay_logged_in) %>
+                  <% end %>
+		<br />
+                  <button type="submit" name="login"><%=l(:button_login) %></button>
+
+           <!-- End Form TAG -->
+		<%= javascript_tag "Form.Element.focus('username');" %>
+          <% end %>
+                <!-- register & lost password link -->
+</td></tr>
+<tr><td>
+<% if Setting.lost_password? %>
+      <%= link_to l(:label_password_lost), 
+		:controller => 'account', 
+		:action => 'lost_password' %>
+<% end %>
+</td><td>
+      <%= link_to l(:ang_register), 
+		:controller => 'account', 
+		:action => 'register' %>
+</td>
+</tr>
+</table>
+</center>          
+

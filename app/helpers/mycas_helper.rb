@@ -1,0 +1,2 @@
+module MycasHelper
+end
