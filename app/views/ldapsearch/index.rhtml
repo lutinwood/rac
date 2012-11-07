@@ -1,0 +1,33 @@
+<h2><%= l(:clruniv_add_member_from_ldap)%></h2>
+
+<% remote_form_for(:ldapmember, :url => {:controller => 'ldapsearch', :action => 'search', :project_id => @project}, :method => :post, :id => 'formsearch') do |f| %>
+  <fieldset><legend><%= l(:label_filter_plural) %></legend>
+    <p>
+      <%= l(:field_directory_plural) %>:
+      <% Cas.find(:all).each do |cas| %>
+       <label><%= check_box_tag 'cas[cas_ids][]', cas.id, true %> <%= cas.name %></label>
+      <% end %>
+    </p>
+    <p>
+      <label><%= l(:field_firstname) %>: </label><%= text_field_tag 'firstname',nil,:size=>30 %>&nbsp;
+      <label><%= l(:field_lastname) %>: </label><%= text_field_tag 'lastname',nil,:size=>30 %>
+      <%= submit_tag l(:button_submit) %>
+    </p>
+  </fieldset>
+  <%= javascript_tag "Form.Element.focus('firstname');" %>
+<% end %>
+&nbsp;
+<div id='ldapusers' class='list'>
+<%= render :partial => 'search' %>
+</div>
+
+<% content_for :sidebar do %>
+<h3><%= l(:label_role_plural) %></h3>
+  <% form_tag  ({:controller =>'ldapsearch', :action =>'add', :project_id => @project} , :method => :post, :id => 'formadd') do |f| %>
+  <% Role.find_all_givable.each do |role| %>
+    <p><label><%= check_box_tag 'roles[role_ids][]', role.id, Setting.plugin_redmine_clruniv[:default_role]==role.id.to_s %> <%=h role %></label></p>
+  <%end%>
+  <%= hidden_field_tag 'cas_id', nil, :id => 'field_cas_id' %> 
+  <%= hidden_field_tag 'login', nil, :id => 'field_login' %> 
+  <%end%>
+<%end%>

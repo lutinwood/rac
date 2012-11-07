@@ -1,0 +1,10 @@
+#authlink { margin:0; padding: 0; }
+#authlink li {display: inline; list-style-type: none; padding:0 1em; }
+#login-form table { margin-top:2em; }
+#login-form table td { padding: 3px 6px; }
+#cas-login-box table { margin-top:2em; margin-left: auto; margin-right: auto; border-spacing:3em 0em; }
+#cas-login-box td {padding:1em; border: 2px solid #FDBF3B; background-color:#FFEBC1;}
+#cas-login-box a {display:block; margin:auto; text-align:center; }
+#aua-sso a {width:150px; padding-top:60px; background: url(../images/aua.png) no-repeat;}
+#aua-sso a:hover {background-position:-150px 0;}
+.note { font-size:0.9em; color: #666; }

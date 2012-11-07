@@ -1,0 +1,26 @@
+<%  %>
+<h3><%= l(:label_my_projects) %></h3>
+
+<% projects = User.current.projects.all %>
+<% if projects.any? %>
+<table class="list">
+ <thead>
+  <th align="left"><%=l(:field_name)%></th>
+  <th><%=l(:field_is_public)%></th>
+  <th><%=l(:label_role_plural)%></th>
+  <th><%=l(:clruniv_last_activity)%></th>
+ </thead>
+ <tbody>
+ <% project_tree(projects) do |project,level| %>
+   <% e = Redmine::Activity::Fetcher.new(User.current, :project => project, :author => User.current).events(nil, nil, :limit => 1).first %>
+   <% logger.info("@@@@@@ "+e.inspect) %>
+   <tr class="<%=cycle("odd", "even")%> project <%=project.root? ? " root" : nil%> <%=project.child? ? " child" : nil%> <%= project.leaf? ? " leaf" : " parent"%> <%= level > 0 ? "idnt idnt-#{level}" : nil %>">
+	<td class="name"><%= project.active? ? link_to(h(project.name), :controller => 'projects', :action => 'show', :id => project) : h(project.name) %></td>
+    <td align="center"><%= checked_image project.is_public? %></td>
+    <td align="center"><%=h project.members.find(:first,:conditions=>{:user_id=>User.current}).roles.sort.collect(&:to_s).join(', ') %></td>
+    <td align="center"><%= format_time(e.event_datetime) unless e.nil? %></td>
+   </tr>
+ <% end %>
+ </tbody>
+</table>
+<% end %>
