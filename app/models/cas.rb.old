@@ -16,24 +16,25 @@ class Cas < ActiveRecord::Base
 
   #is_staff?
   def is_staff(login)
-auth = {:method => :simple, :username =>'cn=acces-trombi,ou=access,dc=univ-angers,dc=fr' , :password => 'bi2tr0'} 
-ldap = Net::LDAP::new :host => 'castor.info-ua', :port => '389', :auth => auth
-filter = Net::LDAP::Filter.eq('uid', login)    
-labo = Net::LDAP::Filter.eq('supannAffectation', 'SI*')
-real_filter = filter & labo
-entry = ldap.search(:base => 'OU=people,DC=univ-angers,DC=fr', :filter => real_filter  )    
-return entry
+    myldap = AuthSource.find_by_host(self.ldap)
+    auth = {:method => :simple, :username => myldap.account, :password => myldap.account_password}
+    ldap = Net::LDAP::new :host => myldap.host, :port => myldap.port, :auth => auth
+    filter = Net::LDAP::Filter.eq(myldap.attr_login, login)
+    labo = Net::LDAP::Filter.eq('supannAffectation', 'SI*')
+    real_filter = filter & labo
+    entry = ldap.search(:base => myldap.base_dn, :filter => real_filter  )
+    return entry
   end
 
 
 def onthefly(login) 
  begin
    # récupération des information ldap stocké en base
+   myldap = AuthSource.find_by_host(self.ldap)
    # définition de la requête
-auth = {:method => :simple, :username =>'cn=acces-trombi,ou=access,dc=univ-angers,dc=fr' , :password => 'bi2tr0'}
-ldap = Net::LDAP::new :host => 'castor.info-ua', :port => '389', :auth => auth
-    
-#raise Exception, myldap.inspect
+   auth = {:method => :simple, :username => myldap.account, :password => myldap.account_password}
+   ldap = Net::LDAP::new :host => self.ldap, :port => '389', :auth => auth
+    #raise Exception, myldap.inspect
     
 end
     filter = Net::LDAP::Filter.eq('uid', login)

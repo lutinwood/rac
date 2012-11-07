@@ -15,8 +15,11 @@ class CreateCas < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :cas
-    remove_columns :users, :cas_id
+    	drop_table :cas
+    	remove_columns :users, :cas_id
+	remove_columns :users, :aua_statut
+   	remove_columns :users, :supann_affectation_first
+   	remove_columns :users, :supann_affectation_last
   end
 
 end

@@ -1,3 +1,24 @@
-# English strings go here for Rails i18n
+# English strings go here
 en:
-  my_label: "My label"
+  clruniv_userid_exists: "An user with the login '%s' is already registered"
+  clruniv_auth: "%s member"
+  clruniv_local_auth: "Guest member"
+  clruniv_register: "Create a guest account"
+  clruniv_repository_not_created: "The repository is not yet created. It will be created automatically soon."
+  clruniv_repository_created: "The %s repository is available."
+  clruniv_repository_dev_access: "A developper of the project can access the repository via %s"
+  clruniv_repository_anon_access: "The project is public, so anyone can access the repository (read only)"
+  clruniv_repository_access: "URL for %s"
+  clruniv_account_type: "Type"
+  clruniv_guest_account: "local"
+  clruniv_help_url: "URL for help"
+  clruniv_ldap_registered: "The account was imported from directory. It will be activated at the first connexion of user."
+  clruniv_add_member_from_ldap: "Add a member from a directory"
+  clruniv_already_member: "The user was already a member of the project."
+  clruniv_default_role: "Default role of new members"
+  clruniv_members_count: "#Members"
+  clruniv_last_activity: "Last activity"
+  clruniv_warn_config_repo: "Your repository is not active. Please configure."
+  permission_add_member_from_ldap: "Add member from LDAP"
+  field_directory_plural: "Directories"
+  

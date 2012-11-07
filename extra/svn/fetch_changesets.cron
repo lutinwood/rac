@@ -1,0 +1,4 @@
+#!/bin/sh
+key=`cat /etc/redmine.key`
+curl "http://localhost/sys/fetch_changesets?key=$key" 
+

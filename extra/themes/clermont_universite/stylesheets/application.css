@@ -1,0 +1,21 @@
+@import url(../../../stylesheets/application.css);
+
+body{ color:#303030; background:#e8eaec; }
+
+#top-menu { height: 17px; font-size: 80%; background-color: #000030; }
+#top-menu a { font-weight: bold; }
+#wrapper {
+  background: url("../images/bg-body.jpg") repeat-x scroll left 19px white;
+}
+#header { 
+  background: url("../images/bg-header.jpg") no-repeat scroll center top transparent; 
+  height:116px;
+  margin: 0; 
+  padding: 4px 8px 0 6px; 
+  position:relative;
+}
+
+#content { padding-top:16px; }
+#sidebar { padding-top:10px; }
+
+#main-menu li a:hover { background-color:white; color: #27A8DF; }

@@ -1,6 +1,32 @@
 <% content_for :header_tags do %>
 <%=stylesheet_link_tag 'anguniv', :plugin => 'redmine_clruniv' %>
 
+<style type="text/css">
+  body {
+    color: yellow;
+    background-color: #d8da3d } 
+
+
+#in-cell{
+background-color: #CCC
+}
+
+
+#out-cell{
+
+background-color: #555 }
+
+#out, #in{
+opacity:0;
+transition:opacity 2s linear;
+}
+
+#out:hover, #in:hover{
+opacity:1;
+}
+
+</style>
+
 <% end %>
 
 <!--modification depuis version 0.2.1-->
@@ -12,16 +38,20 @@
 <th>
 <h3><%= l(:clruniv_local_auth)%></h3>
 </th>
+
 	<tr><td id="in-cell">
-   <!--debut bloc CAS -->
-	     <% Cas.find(:all).each do |cas| %>
-            	 <%= link_to "",{
+        <!--debut du bloc CAS -->
+        <% Cas.find(:all).each do |cas| %>
+               
+	<!--Debut block local -->
+<div id="in">
+            	 <%= link_to l(:button_login),{
 			:controller => 'sso', 
 			:action => 'login',
 			:cas_id => "#{cas.identifier}", 
-			:back_url => params[:back_url]},
-			 :id => 'nav' %>
-   
+			:back_url => params[:back_url]
+			}%>
+                </div>
 	<% end %>
         <!-- fin du bloc CAS -->
         <!-- début du bloc Externe -->	 
@@ -57,15 +87,15 @@
 	</div>
                 <!-- register & lost password link -->
 <tr><td>
-<% if Setting.lost_password? %>
-      <%= link_to l(:label_password_lost), 
-		:controller => 'account', 
-		:action => 'lost_password' %>
-<% end %>
-</td><td>
-      <%= link_to l(:clruniv_register), 
-		:controller => 'account', 
-		:action => 'register' %>
+    <ul id="authlink"><li>
+      <%= link_to l(:clruniv_register), :controller => 'account', :action => 'register' %>
+                      </li>
+    <% if Setting.lost_password? %><li>
+      <%= link_to l(:label_password_lost), :controller => 'account', :action => 'lost_password' %>
+                      </li>
+    <% end %>
+    </ul></tr>
+
 </td>
 </tr>
 </table>

@@ -1,0 +1,116 @@
+/* Modification pour la page de login */
+
+
+.test { font-weight: bold; }
+
+/*Css form*/
+form, button{border:0; margin:0; padding:0}
+
+form{
+        margin:0 auto;
+        width:300px;
+        padding:14px;
+        }
+
+label{
+        display:block;
+        width: 120px;
+        font-weight: bold;
+        }
+
+input, textarea{
+        width: 180px;
+        margin-bottom: 5px;
+        }
+
+textarea{
+        width: 150px;
+        height:150px;
+        }
+
+fieldset{
+        border:solid 2px #b7ddf2;
+        background:#ebf4fb;
+        }
+
+.boxes{
+        width: 1em;
+        }
+
+#out {
+    width:400px;
+    height:50px;
+    overflow:hidden;
+    transition:width 2s ease 0.30s;
+}
+
+#out:hover{
+	display:block;
+    width:400px;
+    height:300px;
+}
+
+#out label{
+        display:block;
+        font-weight:bold;
+        text-align:left;
+        width:140px;
+        float:left;
+}
+
+#out input{
+        float:left;
+        font-size:12px;
+        padding:4px 2px;
+        border:solid 1px #aacfe4;
+        width:200px;
+        margin:2px 0 20px 10px;
+
+}
+
+#out button{
+        clear:both;
+/*      margin-left:150px;*/
+        width:125px;
+        height:31px;
+        background:#666666;
+        /*url(img/button.png) no-repeat;*/
+        text-align:center;
+        line-height:31px;
+        color:#FFFFFF;
+        font-size:11px;
+        font-weight:bold;
+        margin-left:150px;
+        }
+
+#in {
+
+margin:0;
+padding:0;
+width:400px;
+background:#999;
+height:50px;
+overflow:hidden;
+transition:width 2s ease 0.30s;
+}
+
+#in:hover{
+        display:block;
+        width:400px;
+        height:80px;
+}
+
+#in-cell{width:400px;height:200px;background:#fff;}
+#out-cell{width:400px;height:200px;background:#ccc;}
+
+/*before*/
+#authlink { margin:0; padding: 0; }
+#authlink li {display: inline; list-style-type: none; padding:0 1em; }
+#login-form table { margin-top:2em; }
+#login-form table td { padding: 3px 6px; }
+#cas-login-box table { margin-top:2em; margin-left: auto; margin-right: auto; border-spacing:3em 0em; }
+#cas-login-box td {padding:1em; border: 2px solid #FDBF3B; background-color:#FFEBC1;}
+#cas-login-box a {display:block; margin:auto; text-align:center; }
+#aua-sso a {width:150px; padding-top:60px; background: url(../images/aua.png) no-repeat;}
+#aua-sso a:hover {background-position:-150px 0;}
+.note { font-size:0.9em; color: #666; }
