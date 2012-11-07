@@ -2,13 +2,13 @@
 width: 305px;
 height:100px;
 }
-a#nav{ 
-	display: block;
-	background: white url(../images/aua_BW.png) left top no-repeat;
-	}
+a#nav{
+        display: block;
+        background: url(../images/long_aua_BW.png) -24% no-repeat;
+        }
 a#nav:hover, a#nav:focus, a#nav:active{
-	background: black url(../images/aua_BW.png) right top no-repeat;
-	}	
+        background: black url(../images/long_aua_BW.png) 130%  no-repeat;
+        }
 
 #out, #in{
 opacity:0;
@@ -18,4 +18,15 @@ transition:opacity 2s linear;
 #out:hover, #in:hover{
 opacity:1;
 }
-
+label{
+        display: block;
+        width: 100px;
+        float: left;
+}
+button{
+        float: right;
+}
+.ruby_box{
+        border-radius:6px;
+        -webkit-border-radius:6px;
+       }
