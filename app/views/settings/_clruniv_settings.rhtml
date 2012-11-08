@@ -1,8 +1,4 @@
-<% roles = []
-   Role.find_all_givable.each { |r| roles.push([r.name,r.id.to_s]) } %>
+
 <p>
-  <label><%= l(:clruniv_repository_access,"svn") %></label><%= text_field_tag 'settings[svn_url]', settings[:svn_url], :size => 50 %><br />
-  <label><%= l(:clruniv_repository_access,"git") %></label><%= text_field_tag 'settings[git_url]', settings[:git_url], :size => 50 %><br />
-  <label><%= l(:clruniv_help_url) %></label><%= text_field_tag 'settings[help_url]', settings[:help_url], :size => 50 %><br />
-  <label><%= l(:clruniv_default_role) %></label><%= select_tag  'settings[default_role]', options_for_select(roles, settings[:default_role])  %>
-</p>
+ <label><%= l(:rac_help_url) %></label><%= text_field_tag 'settings[help_url]', settings[:help_url], :size => 50 %><br />
+  </p>

@@ -45,7 +45,7 @@ class SsoController < ApplicationController
       elsif (!user.cas or user.cas.url != @cas.url)  # On verifie que l'on provient toujours du meme CAS
         reset_session
        
-        flash[:error] = l(:clruniv_userid_exists, user.login)
+        flash[:error] = l(:rac_userid_exists, user.login)
         redirect_to :controller => "account", :action => "register"
       else
         self.logged_user = user

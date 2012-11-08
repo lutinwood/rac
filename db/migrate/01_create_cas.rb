@@ -6,6 +6,14 @@ class CreateCas < ActiveRecord::Migration
       t.column "url", :string, :limit => 60
       t.column "ldap", :string, :limit => 60
       t.column "dn", :string, :limit => 255
+      t_column :cas, :port, :integer, :default => 389
+    t_column :cas, :attr_login, :string
+   t_column :cas, :attr_firstname, :string
+    t_column :cas, :attr_lastname, :string
+   t_column :cas, :attr_mail, :string
+    t_column :cas, :active_filter, :string
+    t_column :cas, :staff_filter, :string
+      
     end
     add_column :users, :cas_id, :integer
     add_column :users, :supann_affectation_first, :string, :limit => 20
@@ -16,6 +24,7 @@ class CreateCas < ActiveRecord::Migration
 
   def self.down
     	drop_table :cas
+    	
     	remove_columns :users, :cas_id
 	remove_columns :users, :aua_statut
    	remove_columns :users, :supann_affectation_first

@@ -3,7 +3,7 @@
 <p><%=l(:field_login)%>: <strong><%= @user.login %></strong><br />
 <%=l(:field_created_on)%>: <%= format_time(@user.created_on) %></p>
 
-<p><%=l(:clruniv_account_type)%>: 
+<p><%=l(:rac_account_type)%>: 
 <% if @user.cas %>
  <%= "CAS (#{@user.cas.identifier})" %><br /><br />
  <%= "Departement #{@user.supann_affectation_first}"%><br />
@@ -20,7 +20,7 @@
 <% elsif @user.auth_source %>
 <%= "LDAP (#{@user.auth_source.name})" %>
 <% else %>
-<%= l(:clruniv_guest_account) %>
+<%= l(:rac_guest_account) %>
 <% end %>
 </p>
 

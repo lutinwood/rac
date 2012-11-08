@@ -1,6 +1,6 @@
 Version v-0.5
 
-# redmine_clruniv (0.2.0)
+# redmine_rac (0.2.0)
 Est une version adapté pour l'utilisation au sein de la faculté des sciences de l'université d'Angers
 
 Cette version est utilisé avec la version 1.3.2 de Redmine. 
@@ -12,7 +12,7 @@ script/plugin install -x http://svn.github.com/gunark/rubycas-client.git
 RAILS_ENV=production rake db:migrate_plugins
 
 
-# redmine_clruniv (0.1.0) (http://forge.clermont-universite.fr/projects/redmine-clruniv)
+# redmine_rac (0.1.0) (http://forge.clermont-universite.fr/projects/redmine-rac)
 # Forge Clermont Université est un plugin pour le système de gestion de développement collaboratif de logiciel Redmine qui :
 ajoute l'authentification via plusieurs serveurs CAS
 ouvre la création de nouveau projet au personnel

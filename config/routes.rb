@@ -15,11 +15,6 @@ ActionController::Routing::Routes.draw do |map|
     ldapsearch.connect 'projects/:project_id/ldapsearch', :action => 'index'
   end
 
-  map.with_options :controller => 'sys' do |sys|
-    sys.connect 'sys/reposman_requests.:format', :action => 'requests', :conditions => {:method => :get}
-    sys.connect 'sys/reposman_requests/:id/close.:format', :action => 'close_request', :conditions => {:method => :post}
-  end
-
 #map.connect 'auth_sources/:id/test_connection', :controller => 'auth_source', :action => 'test_connection'
 end
 

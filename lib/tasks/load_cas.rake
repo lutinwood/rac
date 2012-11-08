@@ -6,7 +6,7 @@ def addcas(values)
 end
 
 desc 'Load CAS in database.'
-namespace :clruniv do
+namespace :rac do
   task :load_cas => :environment do
    addcas(:name=>"Dummy", \
                :identifier =>"dummy", \

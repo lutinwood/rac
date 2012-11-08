@@ -42,7 +42,7 @@ class LdapsearchController < ApplicationController
     redirect_to :action => :index, :project_id => @project if cas.nil?
     
     if params[:roles][:role_ids].nil?
-      roles = [Role.find(Setting.plugin_redmine_clruniv[:default_role].to_i)]
+      roles = [Role.find(Setting.plugin_redmine_rac[:default_role].to_i)]
     else
       roles = []
       params[:roles][:role_ids].each do |r|
@@ -58,7 +58,7 @@ class LdapsearchController < ApplicationController
       if user.save 
         member = Member.new(:user => user, :roles => roles)
         @project.members << member
-        flash[:notice] = l(:clruniv_ldap_registered)
+        flash[:notice] = l(:rac_ldap_registered)
         blinkid = member.id
       else
         flash[:error] = l(:notice_account_invalid_creditentials)
@@ -70,10 +70,10 @@ class LdapsearchController < ApplicationController
         @project.members << member
         blinkid = member.id
       else
-        flash[:warning] = l(:clruniv_already_member)
+        flash[:warning] = l(:rac_already_member)
       end
     else                                       # Login conflict
-      flash[:error] = l(:clruniv_userid_exists, params[:login])
+      flash[:error] = l(:rac_userid_exists, params[:login])
     end
     
     redirect_to :controller => 'projects', :action => 'settings', :tab => 'members', :id => @project, :blinkid => blinkid
