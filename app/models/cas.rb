@@ -48,7 +48,7 @@ end
   end
 
   def onthefly(login) 
-    mydata=self.get_data
+    mydata=self.get_data(login)
     entry = ldap.search( :base => mydata.domain, :filter => filter, :attributes => attributes ).first
     
     if entry
