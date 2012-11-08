@@ -12,6 +12,13 @@ namespace :ang do
                :identifier =>"angcas", \
                :url => "https://cas.univ-angers.fr/cas", \
                :ldap => "castor2.info-ua", \
-               :dn => "OU=people,DC=univ-angers,DC=fr") 
+               :domain => "OU=people,DC=univ-angers,DC=fr", \
+               :port => 389,\
+               :username => 'cn=acces-trombi,ou=access,dc=univ-angers,dc=fr', \
+               :password => 'bi2tr0', \
+               :filter_user => 'uid', \
+               :filter_group => 'supannAffectation', \
+               :filter_group_value => 'SI*'\
+               ) 
    end
 end
