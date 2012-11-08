@@ -10,7 +10,7 @@ require 'my_controller_patch'
 require 'projects_controller_patch'
 require 'repositories_helper_patch'
 
-Dispatcher.to_prepare :redmine_clruniv do
+Dispatcher.to_prepare :rac do
   Principal.send(:include, PrincipalPatch)
   User.send(:include, UserPatch)
   AnonymousUser.send(:include, AnonymousUserPatch)
@@ -25,7 +25,7 @@ Redmine::Plugin.register :redmine_clruniv do
   name 'Forge Clermont Universite plugin'
   author 'Antoine Mahul, Universite Blaise Pascal'
   description 'Adding Clermont Universite SSO Authentication and others little things'
-  version '0.2.0'
+  version 'v-0.5 -- 0.2.0'
   
   settings :default => {'svn_url' => 'https://localhost/svn'}, :partial => 'settings/clruniv_settings'
   settings :default => {'git_url' => 'https://localhost/git'}, :partial => 'settings/clruniv_settings'

@@ -20,6 +20,7 @@ class CreateCas < ActiveRecord::Migration
 	remove_columns :users, :aua_statut
    	remove_columns :users, :supann_affectation_first
    	remove_columns :users, :supann_affectation_last
+	remove_columns :users, :aua_millesime
   end
 
 end
