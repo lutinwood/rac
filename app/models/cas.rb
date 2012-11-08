@@ -17,7 +17,7 @@ class Cas < ActiveRecord::Base
   validates_presence_of :url,:ldap,:domain, :username, :password, :port
  
  # Variables 
- def get_data(login)
+ def get_data(login,from)
    
   mydata = Cas.first
   auth = {
@@ -25,16 +25,24 @@ class Cas < ActiveRecord::Base
           :username => mydata.username,
           :password => mydata.password 
           } 
-          
   ldap = Net::LDAP::new :host => mydata.ldap, :port => mydata.port , :auth => auth
- 
+  
   filter = Net::LDAP::Filter.eq(mydata.filter_user, login)
-  labo = Net::LDAP::Filter.eq(mydata.filter_group, mydata.filter_group_value)  
+  
+  #staff
+  labo = Net::LDAP::Filter.eq(mydata.filter_group, mydata.filter_group_value)
   real_filter = filter & labo
+        
+  #onthefly 
   attributes = ['givenName', 'sn', 'mail', 'auaStatut', 'eduPersonAffiliation','auaEtapeMillesime', 'supannAffectation']
-  return mydata
-end   
- # Fonctions
+        
+   entry = case from 
+   when "staff" then ldap.search(:base => mydata.domain, :filter => real_filter)
+   when "onthefly" then ldap.search( :base => mydata.domain, :filter => filter, :attributes => attributes ).first
+   end
+  
+  return entry
+end  
   
   def authenticate(controller)
     init_client
@@ -42,14 +50,15 @@ end
   end
 
   def is_staff(login)
-    mydata=self.get_data(login)
-    entry = ldap.search(:base => mydata.domain, :filter => real_filter)
+    
+    entry = self.get_data(login,'staff')
     return entry
+  
   end
 
   def onthefly(login) 
-    mydata=self.get_data(login)
-    entry = ldap.search( :base => mydata.domain, :filter => filter, :attributes => attributes ).first
+    
+    entry = self.get_data(login,'onthefly')
     
     if entry
                       logger.debug entry.inspect
