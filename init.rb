@@ -1,10 +1,10 @@
 require 'redmine'
 
-Redmine::Plugin.register :redmine_aua_cas do
+Redmine::Plugin.register :rac do
   name 'Redmine Aua Cas plugin'
-  author 'Author name'
-  description 'This is a plugin for Redmine'
-  version '0.0.1'
-  url 'http://example.com/path/to/plugin'
-  author_url 'http://example.com/about'
+  author 'Thierry Forest'
+  description 'Redmine CAs Authentification'
+  version '-- master -- v-0.6'
+  url 'http://forge.info.univ-angers.fr/redmine/projects/rac'
+ # author_url 'http://example.com/about'
 end
