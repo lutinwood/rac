@@ -17,6 +17,8 @@ class Cas < ActiveRecord::Base
   validates_presence_of :url,:ldap,:domain, :username, :password, :port
  
  # Variables 
+ def get_data
+   
   mydata = Cas.first
   auth = {
           :method => :simple,
@@ -30,7 +32,8 @@ class Cas < ActiveRecord::Base
   labo = Net::LDAP::Filter.eq(mydata.filter_group, mydata.filter_group_value)  
   real_filter = filter & labo
   attributes = ['givenName', 'sn', 'mail', 'auaStatut', 'eduPersonAffiliation','auaEtapeMillesime', 'supannAffectation']
-  
+  return mydata
+end   
  # Fonctions
   
   def authenticate(controller)
@@ -39,12 +42,13 @@ class Cas < ActiveRecord::Base
   end
 
   def is_staff(login)
+    mydata=self.get_data
     entry = ldap.search(:base => mydata.domain, :filter => real_filter)
     return entry
   end
 
   def onthefly(login) 
-  
+    mydata=self.get_data
     entry = ldap.search( :base => mydata.domain, :filter => filter, :attributes => attributes ).first
     
     if entry
@@ -93,7 +97,8 @@ class Cas < ActiveRecord::Base
 
 private
   def init_client
-      CASClient::Frameworks::Rails::Filter.configure(:cas_base_url => mydata.url)
+      
+      CASClient::Frameworks::Rails::Filter.configure(:cas_base_url => self.url)
       return CASClient::Frameworks::Rails::Filter.client
   end
 end
