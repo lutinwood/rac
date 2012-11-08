@@ -17,17 +17,17 @@ class Cas < ActiveRecord::Base
   validates_presence_of :url,:ldap,:domain, :username, :password, :port
  
  # Variables 
-  
+  mydata = Cas.first
   auth = {
           :method => :simple,
-          :username => self.username,
-          :password => self.password 
+          :username => mydata.username,
+          :password => mydata.password 
           } 
           
-  ldap = Net::LDAP::new :host => self.ldap, :port => self.port , :auth => auth
+  ldap = Net::LDAP::new :host => mydata.ldap, :port => mydata.port , :auth => auth
  
-  filter = Net::LDAP::Filter.eq(self.filter_user, login)
-  labo = Net::LDAP::Filter.eq(self.filter_group, self.filter_group_value)  
+  filter = Net::LDAP::Filter.eq(mydata.filter_user, login)
+  labo = Net::LDAP::Filter.eq(mydata.filter_group, mydata.filter_group_value)  
   real_filter = filter & labo
   attributes = ['givenName', 'sn', 'mail', 'auaStatut', 'eduPersonAffiliation','auaEtapeMillesime', 'supannAffectation']
   
@@ -39,16 +39,15 @@ class Cas < ActiveRecord::Base
   end
 
   def is_staff(login)
-    entry = ldap.search(:base => self.domain, :filter => real_filter)
+    entry = ldap.search(:base => mydata.domain, :filter => real_filter)
     return entry
   end
 
   def onthefly(login) 
   
-    entry = ldap.search( :base => self.dn, :filter => filter, :attributes => attributes ).first
+    entry = ldap.search( :base => mydata.domain, :filter => filter, :attributes => attributes ).first
     
     if entry
- 
                       logger.debug entry.inspect
      
       user = User.new
@@ -70,7 +69,7 @@ class Cas < ActiveRecord::Base
       else
         begin 
          'Statut inconnu ! #{eval.user.aua_statut}'
-      end
+        end
       end
       #
       user.admin = false
@@ -83,9 +82,7 @@ class Cas < ActiveRecord::Base
       user.password = password 
       user.password_confirmation = password
       return user
- 
     end
- 
   end
   
   def logout(controller)
@@ -96,8 +93,7 @@ class Cas < ActiveRecord::Base
 
 private
   def init_client
-      CASClient::Frameworks::Rails::Filter.configure(:cas_base_url => self.url)
+      CASClient::Frameworks::Rails::Filter.configure(:cas_base_url => mydata.url)
       return CASClient::Frameworks::Rails::Filter.client
   end
-
 end
