@@ -6,13 +6,13 @@ class CreateCas < ActiveRecord::Migration
       t.column "url", :string, :limit => 60
       t.column "ldap", :string, :limit => 60
       t.column "dn", :string, :limit => 255
-      t_column :port, :integer, :default => 389
-    t_column :attr_login, :string
-   t_column :attr_firstname, :string
-    t_column :attr_lastname, :string
-   t_column :attr_mail, :string
-    t_column :active_filter, :string
-    t_column :staff_filter, :string
+      t_column "port", :integer, :default => 389
+    t_column "attr_login", :string
+   t_column "attr_firstname", :string
+    t_column "attr_lastname", :string
+   t_column "attr_mail", :string
+    t_column "active_filter", :string
+    t_column "staff_filter", :string
       
     end
     add_column :users, :cas_id, :integer
