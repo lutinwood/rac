@@ -17,7 +17,7 @@ class Cas < ActiveRecord::Base
   validates_presence_of :url,:ldap,:domain, :username, :password, :port
  
  # Variables 
- def get_data
+ def get_data(login)
    
   mydata = Cas.first
   auth = {
@@ -42,7 +42,7 @@ end
   end
 
   def is_staff(login)
-    mydata=self.get_data
+    mydata=self.get_data(login)
     entry = ldap.search(:base => mydata.domain, :filter => real_filter)
     return entry
   end
