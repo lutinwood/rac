@@ -59,7 +59,7 @@ class Cas < ActiveRecord::Base
     user.firstname = entry.givenName.is_a?(Array) ? entry.givenName.first : entry.givenName
     user.lastname = entry.sn.is_a?(Array) ? entry.sn.first : entry.sn
     user.mail = entry.mail.is_a?(Array) ? entry.mail.first : entry.mail
-    entry.mail.
+   
     user.cas = self
     
     user.admin = false
