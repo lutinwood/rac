@@ -64,9 +64,7 @@ class Cas < ActiveRecord::Base
     user.admin = false
     user.status = User::STATUS_ACTIVE
       
-    password = self.generate_pass
-    user.password = password
-    user.password_confirmation = password
+ # user.random_password
     
     user.aua_statut = entry.auaStatut.is_a?(Array) ? entry.auaStatut.first : entry.auaStatut
    
@@ -84,13 +82,6 @@ class Cas < ActiveRecord::Base
           'Statut inconnu ! #{eval.user.aua_statut}'
     end
   end 
-
- def generate_pass
-     # Generate and set a random password.
-      chars = ("a".."z").to_a + ("A".."Z").to_a + ("0".."9").to_a
-      password = ''
-      40.times { |i| password << chars[rand(chars.size-1)] }  
- end
 
   def onthefly(login) 
     entry = self.get_data(login,'onthefly')
