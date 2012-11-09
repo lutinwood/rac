@@ -94,7 +94,7 @@ class Cas < ActiveRecord::Base
     entry = self.get_data(login,'onthefly')
       user = self.create_user(login,entry)
       return user
-    end
+    
   end
   
   def logout(controller)
