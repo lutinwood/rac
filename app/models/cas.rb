@@ -59,21 +59,26 @@ class Cas < ActiveRecord::Base
     user.firstname = entry.givenName.is_a?(Array) ? entry.givenName.first : entry.givenName
     user.lastname = entry.sn.is_a?(Array) ? entry.sn.first : entry.sn
     user.mail = entry.mail.is_a?(Array) ? entry.mail.first : entry.mail
+    entry.mail.
     user.cas = self
     
     user.admin = false
     user.status = User::STATUS_ACTIVE
       
  # user.random_password
-    
-    user.aua_statut = entry.auaStatut.is_a?(Array) ? entry.auaStatut.first : entry.auaStatut
-   
-   self.myfilter(user,entry)
+ # decision de ne pas renseigner le champs password
+ # pour un utilisateur identifier par cas 
+ 
+   self.statut(user,entry)
    
     return user 
  end     
 
-  def myfilter(user,entry)
+  def statut(user,entry)
+   
+   #
+   user.aua_statut = entry.auaStatut.is_a?(Array) ? entry.auaStatut.first : entry.auaStatut
+    
     if user.aua_statut == 'etu'
       user.aua_millesime = entry.auaEtapeMillesime.is_a?(Array) ? entry.auaEtapeMillesime.first : entry.auaEtapeMillesime
       elsif user.aua_statut == 'perso'
@@ -82,10 +87,11 @@ class Cas < ActiveRecord::Base
           'Statut inconnu ! #{eval.user.aua_statut}'
     end
   end 
-
-  def onthefly(login) 
+  
+# Utilisateur déjà authentifié
+  def onthefly(login)
+    # Existe t'il dans le systeme 
     entry = self.get_data(login,'onthefly')
-    if entry
       user = self.create_user(login,entry)
       return user
     end
