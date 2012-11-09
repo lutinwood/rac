@@ -70,12 +70,12 @@ class Cas < ActiveRecord::Base
     
     user.aua_statut = entry.auaStatut.is_a?(Array) ? entry.auaStatut.first : entry.auaStatut
    
-   self.myfilter(user)
+   self.myfilter(user,entry)
    
     return user 
  end     
 
-  def myfilter(user)
+  def myfilter(user,entry)
     if user.aua_statut == 'etu'
       user.aua_millesime = entry.auaEtapeMillesime.is_a?(Array) ? entry.auaEtapeMillesime.first : entry.auaEtapeMillesime
       elsif user.aua_statut == 'perso'
