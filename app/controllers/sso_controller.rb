@@ -22,42 +22,48 @@ class SsoController < ApplicationController
       redirect_to :controller => 'welcome'
     end
   end
+# factorisation pour cloisonner les diffusion de message debug
+
+def user_saved(user)
+  
+  self.logged_user = user
+          flash[:notice] = l(:notice_account_activated)
+          redirect_to :controller => "my", :action => "account"
+end
+
+def invalid_user
+  flash[:error] = l(:notice_account_invalid_creditentials)
+          redirect_to :controller => "account", :action => "register"
+end
+
+def existing_user 
+    reset_session
+        flash[:error] = l(:rac_userid_exists, user.login)
+        redirect_to :controller => "account", :action => "register"
+end
 
   def login
     # Authenticate user
     if @cas.authenticate(self)  
       user = User.find_by_login(session[:cas_user])
       if user.nil? 
-        logger.debug "user is new to the system "
-        logger.debug user.inspect
         user = @cas.onthefly(session[:cas_user])
-        logger.debug @cas.inspect
-        logger.debug user.inspect
         if user.save
-          self.logged_user = user
-          flash[:notice] = l(:notice_account_activated)
-          redirect_to :controller => "my", :action => "account"
+          self.user_saved(user)
         else
-          
-          flash[:error] = l(:notice_account_invalid_creditentials)
-          redirect_to :controller => "account", :action => "register"
+          self.invalid_user
         end
       elsif (!user.cas or user.cas.url != @cas.url)  # On verifie que l'on provient toujours du meme CAS
-        reset_session
-       
-        flash[:error] = l(:rac_userid_exists, user.login)
-        redirect_to :controller => "account", :action => "register"
+        self.existing_user
       else
         self.logged_user = user
         call_hook(:controller_account_success_authentication_after, {:user => user })
         if user.registered?  # On active le compte s'il n'est pas actif
           user.activate
           if user.save
-            flash[:notice] = l(:notice_account_activated)
-            redirect_back_or_default :controller => "my", :action => "account"
-          else
-            flash[:error] = l(:notice_account_invalid_creditentials)
-            redirect_to :controller => "account", :action => "register"
+            self.user_saved(user)
+          else  
+            self.invalid_user
           end
         else
           redirect_back_or_default :controller => 'my', :action => 'page'
