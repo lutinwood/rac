@@ -7,7 +7,7 @@ class CasTest < ActiveSupport::TestCase
   
   #fixtures :ldap, :cas, :user
 #FIXTURES_PATH = File.join(File.dirname(__FILE__), '../fixtures')
-  fixtures :users
+  fixtures :users, :cas
  # def setup
   #    Fixtures.create_fixtures(FIXTURES_PATH,'users')
   #end
