@@ -13,8 +13,13 @@ class CasTest < ActiveSupport::TestCase
   #end
   
   #première methode 
+  # assert_instance_of( class, obj, [msg] )
+  
   def test_truth
-    assert true
+    mycas = cas(:cas_anger).find
+    
+    assert_instance_of(cas, mycas)
   end
   
+
 end
