@@ -1,46 +1,40 @@
 class CreateCas < ActiveRecord::Migration
+  
+  # création de la table CAS 
   def self.up
+   
+   # CAS
     create_table "cas", :force => true do |t|
-      # CAS INFO
-      t.column "name", :string, :limit => 60, :null => false
       t.column "identifier", :string,:limit => 20, :null => false
       t.column "url", :string,:limit => 60
-      # LDAP INFO
       t.column "ldap", :string, :limit => 60
-      t.column "domain", :string, :limit => 255
-      t.column "port", :integer, :default => 389
-      t.column "username", :string
-      t.column "password", :string
-      t.column "filter_user", :string
-      t.column "filter_group", :string 
-      t.column "filter_group_value", :string
-    
-    
-    #NOT USED YET 
-      #t.column "attr_login", :string
-      #t.column "attr_firstname", :string
-      #t.column "attr_lastname", :string
-      #t.column "attr_mail", :string
-     # t.column "active_filter", :string
-    #  t.column "staff_filter", :string
-      
     end
-    add_column :users, :cas_id, :integer
     
-    add_column :users, :supann_affectation_first, :string, :limit => 20
-    add_column :users, :supann_affectation_last, :string, :limit => 20
-    add_column :users, :aua_statut, :string , :limit => 10
-    add_column :users, :aua_millesime, :string, :limit => 60
+    # Cursus
+    create_table "cursus", :force => true do |t|
+      t.column "ldap_desc", :string
+      t.column "desc", :string
+    end
+    
+    # USER
+    # remove_column :users, :auth_id
+    add_column :users, :cas_id, :integer
+    add_column :users, :type, :string
+    add_column :users, :id_cursus, :integer
   end
 
   def self.down
+    	
+    	# CAS
     	drop_table :cas
     	
+    	# Cursus
+    	drop_table :cursus
+    	
+    	# User
     	remove_columns :users, :cas_id
-	remove_columns :users, :aua_statut
-   	remove_columns :users, :supann_affectation_first
-   	remove_columns :users, :supann_affectation_last
-	remove_columns :users, :aua_millesime
+	    remove_columns :users, :type
+   	  remove_columns :users, :id_cursus
   end
 
 end

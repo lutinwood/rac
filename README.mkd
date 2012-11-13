@@ -1,20 +1,72 @@
-Version v-0.5
+Version v-0.6
+13/11/2012
 
-# redmine_rac (0.2.0)
-Est une version adapté pour l'utilisation au sein de la faculté des sciences de l'université d'Angers
+rac => Redmine AUA CAS
 
-Cette version est utilisé avec la version 1.3.2 de Redmine. 
+Version complète:
 
-Nécessite l'installation du Rubygem rubycas-client(2.3.8)
+Authentification CAS	+	Filtre LDAP		+	Theme LERIA
+-----------------------------------------------------------
 
-cd redmine(path)
-script/plugin install -x http://svn.github.com/gunark/rubycas-client.git
-RAILS_ENV=production rake db:migrate_plugins
+I/ Authentification CAS
 
+MODEL 
+	
+	CAS				(new)
+	User			(modify)
+	Auth_source		(modify)
+	
+	--
+	a) Création d'un modèle CAS
+			cas ( 	:cas_url,
+					:auth_sources_id,
+					:cas_desc )
+DONE
+					
+		Modification du modèle Users
+					user (:auth_id TO :cas_id )
+	
+	b) Insertion des informations du serveur ldap 
+			auth_sources
+				(	:id,
+				 	:type,
+				 	:name, 
+				 	:host,
+				 	:port,
+				 	:account,
+				 	:account_password,
+				 	:base_dn, 
+				 	:attr_login,
+				 	:attr_firstname, 
+				 	:attr_lastname,
+				 	:attr_mail,
+				 	:onthefly_register,
+				 	:tls,
+				 	:filter )
+	== > Ajouter
+		auth_sources (:filter_value)
+		user (:auth_id TO :cas_id ) --> déjà existant !!
+	
 
-# redmine_rac (0.1.0) (http://forge.clermont-universite.fr/projects/redmine-rac)
-# Forge Clermont Université est un plugin pour le système de gestion de développement collaboratif de logiciel Redmine qui :
-ajoute l'authentification via plusieurs serveurs CAS
-ouvre la création de nouveau projet au personnel
-simplifie la gestion automatique des dépôts Subversion et Git
-permet l'ajout de membres directement depuis les annuaires universitaires
+VIEW
+	account/login	
+	settings/CAS_setting
+	
+CONTROLLER
+	cas_controller	
+
+II / Filtre LDAP
+
+MODEL
+	Cursus (new)
+	User 	(Modify)
+	
+
+	a) Création d'un modèle Cursus 
+		Cursus (	:ldap_desc, :string,
+					:desc, :string )
+					
+	Ajout ==>
+		Users (		:id_cursus, :integer (multiple)?
+					:type, :string (teacher , student)
+---------------------------------------------------------

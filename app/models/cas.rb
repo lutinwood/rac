@@ -19,6 +19,9 @@ class Cas < ActiveRecord::Base
  
  def get_data(login,from)
   # Variables
+  
+  
+  
   mydata = Cas.first
   auth = {
           :method => :simple,

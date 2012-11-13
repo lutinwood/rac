@@ -4,8 +4,8 @@ class SsoController < ApplicationController
   skip_before_filter :check_if_login_required, :only => [:login]
   before_filter :find_cas, :only => [:login]
 
-  before_filter :find_project, :only => [:ldapsearch_for_members]
-  before_filter :authorize, :only => [:ldapsearch_for_members]
+ # before_filter :find_project, :only => [:ldapsearch_for_members]
+ # before_filter :authorize, :only => [:ldapsearch_for_members]
 
   # Log out current user and redirect to welcome page
   def logout
