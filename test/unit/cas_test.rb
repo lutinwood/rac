@@ -8,7 +8,7 @@ class CasTest < ActiveSupport::TestCase
   
   #fixtures :ldap, :cas, :user
   
-  fixtures  :myusers, :cas
+  fixtures  :users, :cas
   
   #première methode 
   def test_truth
