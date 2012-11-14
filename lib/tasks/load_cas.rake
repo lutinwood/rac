@@ -8,8 +8,7 @@ end
 desc 'Load CAS in database.'
 namespace :rac do
   task :load_cas => :environment do
-   addcas(:name=>"Dummy", \
-               :identifier =>"dummy", \
+   addcas(:identifier =>"dummy", \
                :url => "https://dummy/cas", \
                :ldap => "ldap.dummy.fr", \
                :dn => "dc=dummy,dc=fr") 
