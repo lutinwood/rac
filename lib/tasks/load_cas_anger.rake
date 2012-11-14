@@ -46,8 +46,7 @@ end
 desc 'Load CAS in database.'
 namespace :ang do
   task :load_cas => :environment do
-   addcas(:name=>"CAS ANGERS", \
-               :identifier =>"angcas", \
+   addcas(:identifier =>"angcas", \
                :url => "https://cas.univ-angers.fr/cas", \
                :ldap => "Castor2" )
    end
