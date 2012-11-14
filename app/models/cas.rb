@@ -18,30 +18,44 @@ class Cas < ActiveRecord::Base
   # init_client
  
  def get_data(login,from)
-  # Variables
-  
-  
-  
-  mydata = Cas.first
-  auth = {
-          :method => :simple,
-          :username => mydata.username,
-          :password => mydata.password 
-          } 
-  ldap = Net::LDAP::new :host => mydata.ldap, :port => mydata.port , :auth => auth
-  filter = Net::LDAP::Filter.eq(mydata.filter_user, login)
-  #staff
-  labo = Net::LDAP::Filter.eq(mydata.filter_group, mydata.filter_group_value)
-  real_filter = filter & labo
-  #onthefly 
-  attributes = ['givenName', 'sn', 'mail', 'auaStatut', 'eduPersonAffiliation','auaEtapeMillesime', 'supannAffectation']
+   ### USER ###
+   # acces to user fields
+   user_data  =  User.find_by_login(login)
+   # cas_id field of user table
+   cas_id = user_data.cas_id
+   
+   ### CAS ###
+   # acces to cas fields
+   cas_data = Cas.find_by_id(cas_id)
+   # field field of cas table
+   ldap_name = cas_data.ldap
+   
+   ## LDAP ##
+   # acces to ldap field
+   ldap_data = AuthSourceLdap.find_by_name(ldap_name)
+   
+   
+   # Composition de requête
+   auth = {
+      :method => :simple,
+      :username => ldap_data.account,
+      :password => ldap_data.account_password
+    }
+     
+    ldap_req = Net::LDAP::new :host => ldap_data.ldap, :port => ldap_data.port , :auth => auth
+    filter = Net::LDAP::Filter.eq(ldap_data.attr_login, login)
+    # Teacher
+    labo = Net::LDAP::Filter.eq(ldap_data.filter, ldap_data.filter_value)
+    real_filter = filter & labo
+    
+    # Informatin to gather from
+    attributes = ['givenName', 'sn', 'mail', 'auaStatut', 'eduPersonAffiliation','auaEtapeMillesime', 'supannAffectation']
   
   # CASE
    entry = case from 
-   when "staff" then ldap.search(:base => mydata.domain, :filter => real_filter)
-   when "onthefly" then ldap.search( :base => mydata.domain, :filter => filter, :attributes => attributes ).first
+   when "staff" then ldap_req.search(:base => ldap_data.base_dn, :filter => real_filter)
+   when "onthefly" then ldap_req.search( :base => ldap_data.base_dn, :filter => filter, :attributes => attributes ).first
    end
-   
   # Return
   return entry
  end  
@@ -97,7 +111,6 @@ class Cas < ActiveRecord::Base
     entry = self.get_data(login,'onthefly')
       user = self.create_user(login,entry)
       return user
-    
   end
   
   def logout(controller)
@@ -108,7 +121,6 @@ class Cas < ActiveRecord::Base
 
 private
   def init_client
-      
       CASClient::Frameworks::Rails::Filter.configure(:cas_base_url => self.url)
       return CASClient::Frameworks::Rails::Filter.client
   end

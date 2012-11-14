@@ -16,9 +16,6 @@ if Rails::VERSION::MAJOR >=3
     end
 end
 
-
-
-
 Dispatcher.to_prepare :rac do
  
   User.send(:include, UserPatch)

@@ -28,21 +28,9 @@ DONE
 	
 	b) Insertion des informations du serveur ldap 
 			auth_sources
-				(	:id,
-				 	:type,
-				 	:name, 
-				 	:host,
-				 	:port,
-				 	:account,
-				 	:account_password,
-				 	:base_dn, 
-				 	:attr_login,
-				 	:attr_firstname, 
-				 	:attr_lastname,
-				 	:attr_mail,
-				 	:onthefly_register,
-				 	:tls,
-				 	:filter )
+				(	:id,:type,:name, :host,:port,:account,:account_password,
+				 	:base_dn,:attr_login,:attr_firstname,:attr_lastname,:attr_mail,
+				 	:onthefly_register,:tls,:filter )
 	== > Ajouter
 		auth_sources (:filter_value)
 		user (:auth_id TO :cas_id ) --> déjà existant !!
