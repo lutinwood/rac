@@ -19,7 +19,7 @@ class CreateCas < ActiveRecord::Migration
     # USER
     # remove_column :users, :auth_id
     add_column :users, :cas_id, :integer
-    add_column :users, :type, :string
+    add_column :users, :role, :string
     add_column :users, :id_cursus, :integer
   end
 
@@ -33,7 +33,7 @@ class CreateCas < ActiveRecord::Migration
     	
     	# User
     	remove_columns :users, :cas_id
-	    remove_columns :users, :type
+	    remove_columns :users, :role
    	  remove_columns :users, :id_cursus
   end
 
