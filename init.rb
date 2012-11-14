@@ -1,23 +1,29 @@
 require 'redmine'
 require 'dispatcher' unless Rails::VERSION::MAJOR >= 3
-
-if Rails::VERSION::MAJOR >=3 
-    ActionDispatch::Callbacks.to_prepare do
+require_dependency 'cas'
+	
+require 'user_patch'
+require 'account_controller_patch'
+require 'my_controller_patch'
+#if Rails::VERSION::MAJOR >=3 
+#    ActionDispatch::Callbacks.to_prepare do
       #use require_dependency if you plan to utilize development mode
-      require 'user_patch'
-    end
-  else
-    Dispatcher.to_prepare :rac do
-      #use require_dependency if you plan to utilize development mode
-      require_dependency 'cas'
-      require 'user_patch'
-      require 'account_controller_patch'
-      require 'my_controller_patch'
-    end
-end
+#      require 'user_patch'
+#    end
+#  else
+#    Dispatcher.to_prepare :rac do
+#      #use require_dependency if you plan to utilize development mode
+#require_dependency 'principal'      
+#require_dependency 'cas'
+#      require 'user_patch'
+#      require 'account_controller_patch'
+#      require 'my_controller_patch'
+#    end
+#end
 
 Dispatcher.to_prepare :rac do
- 
+
+Principal.send(:include, PrincipalPatch) 
   User.send(:include, UserPatch)
   AccountController.send(:include, AccountControllerPatch)
   MyController.send(:include, MyControllerPatch)
@@ -37,6 +43,5 @@ Redmine::Plugin.register :rac do
   # ajouter aide dans le menu supérieur 
   
   requires_redmine :version_or_higher => '1.4.4'
-  
-  
+   
 end

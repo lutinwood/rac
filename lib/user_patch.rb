@@ -1,13 +1,13 @@
 
 # Désactiver  Par choix 
 
-#module PrincipalPatch
-#  def self.included(base) # :nodoc:
-#    base.class_eval do
-#      unloadable
-#    end
-#  end
-#end
+module PrincipalPatch
+  def self.included(base) # :nodoc:
+    base.class_eval do
+      unloadable
+    end
+  end
+end
 
 module UserPatch
 
