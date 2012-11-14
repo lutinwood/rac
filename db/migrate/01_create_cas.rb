@@ -20,21 +20,20 @@ class CreateCas < ActiveRecord::Migration
     # remove_column :users, :auth_id
     add_column :users, :cas_id, :integer
     add_column :users, :role, :string
-    add_column :users, :id_cursus, :integer
+    add_column :users, :cursus_id, :integer
   end
 
   def self.down
-    	
     	# CAS
     	drop_table :cas
-    	
+    	c
     	# Cursus
     	drop_table :cursus
     	
     	# User
     	remove_columns :users, :cas_id
 	    remove_columns :users, :role
-   	  remove_columns :users, :id_cursus
+   	  remove_columns :users, :cursus_id
   end
 
 end
