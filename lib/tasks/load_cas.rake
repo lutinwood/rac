@@ -10,8 +10,7 @@ namespace :rac do
   task :load_cas => :environment do
    addcas(:identifier =>"dummy", \
                :url => "https://dummy/cas", \
-               :ldap => "ldap.dummy.fr", \
-               :dn => "dc=dummy,dc=fr") 
+               :ldap => "ldap.dummy.fr") 
    end
 end
 
