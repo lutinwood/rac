@@ -22,8 +22,8 @@ class Cas < ActiveRecord::Base
    # acces to user fields
    user_data  =  User.find_by_login(login)
    # cas_id field of user table
-   cas_id = user_data.cas_id
-   
+ #  cas_id = user_data.cas_id
+cas_id = 1   
    ### CAS ###
    # acces to cas fields
    cas_data = Cas.find_by_id(cas_id)
