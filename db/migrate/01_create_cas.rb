@@ -22,6 +22,7 @@ class CreateCas < ActiveRecord::Migration
     end
 
 ########################## =>     LDAP
+    add_column :auth_sources, :filter_value, :string  
       
     say_with_time "Création de l'entrée LDAP" do
       AuthSourceLdap.create :name => "Castor2",
@@ -43,7 +44,7 @@ class CreateCas < ActiveRecord::Migration
     
     
 ######################## =>       CURSUS
-    
+   
    say_with_time "Création de la table Cursus" do
     # Cursus
     create_table "cursus", :force => true do |t|
@@ -77,7 +78,9 @@ end
 	# Cursus
     	drop_table :cursus
 end
-
+  
+  remove_column :auth_sources, :filter_value
+  
 	say_with_time "Suppresion des champs de la table USERS" do
     	# User
     	remove_column :users, :cas_id
