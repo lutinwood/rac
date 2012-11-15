@@ -12,10 +12,9 @@ class CreateCas < ActiveRecord::Migration
     end
     
     say_with_time "Création de l'entrée CAS" do
-      
     Cas.create :identifier =>"angcas", 
-               :url => "https://cas.univ-angers.fr/cas", 
-               :ldap => "Castor2" 
+               :url =>"https://cas.univ-angers.fr/cas", 
+               :ldap =>"Castor2" 
     end
     
    say_with_time "Création de la table Cursus" do
