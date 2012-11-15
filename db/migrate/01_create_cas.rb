@@ -24,8 +24,7 @@ class CreateCas < ActiveRecord::Migration
 ########################## =>     LDAP
       
     say_with_time "Création de l'entrée LDAP" do
-      AuthSourceLdap.create 
-              :name => "Castor2",
+      AuthSourceLdap.create :name => "Castor2",
               :host => 'castor2.info-ua',
               :port => 389,
               :account => "cn=acces-trombi,ou=access,dc=univ-angers,dc=fr",
