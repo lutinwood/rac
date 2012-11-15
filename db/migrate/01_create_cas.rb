@@ -10,6 +10,14 @@ class CreateCas < ActiveRecord::Migration
       t.column "ldap", :string, :limit => 60
     	end
     end
+    
+    say_with_time "Création de l'entrée CAS" do
+      
+    Cas.create :identifier =>"angcas", 
+               :url => "https://cas.univ-angers.fr/cas", 
+               :ldap => "Castor2" 
+    end
+    
    say_with_time "Création de la table Cursus" do
     # Cursus
     create_table "cursus", :force => true do |t|
@@ -17,6 +25,12 @@ class CreateCas < ActiveRecord::Migration
       t.column "desc", :string
     	end
     end
+    
+    say_with_time "Création de l'entrée CURSUS" do
+    Cursus.create :ldap_desc  =>"3M1INF1",
+                  :desc =>"M1 Informatique"
+    end    
+    
     # USER
     # remove_column :users, :auth_id
     say_with_time "Ajout des champs de la table Users" do 
