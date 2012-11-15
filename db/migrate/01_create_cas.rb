@@ -2,8 +2,11 @@ class CreateCas < ActiveRecord::Migration
  
   # création de la table CAS 
   def self.up
+    
+####################### =>        CAS
+    
   say_with_time "Création de la table CAS" do
-   # CAS
+   # Création de la table 
     create_table "cas", :force => true do |t|
       t.column "identifier", :string, :limit => 20, :null => false
       t.column "url", :string, :limit => 60
@@ -11,11 +14,36 @@ class CreateCas < ActiveRecord::Migration
     	end
     end
     
+    # Création d'un entrée
     say_with_time "Création de l'entrée CAS" do
     Cas.create :identifier =>"angcas", 
                :url =>"https://cas.univ-angers.fr/cas", 
                :ldap =>"Castor2" 
     end
+
+########################## =>     LDAP
+      
+    say_with_time "Création de l'entrée LDAP" do
+      AuthSourceLdap.create 
+              :name => "Castor2",
+              :host => 'castor2.info-ua',
+              :port => 389,
+              :account => "cn=acces-trombi,ou=access,dc=univ-angers,dc=fr",
+              :account_password => 'bi2tr0', 
+              :base_dn => "OU=people,DC=univ-angers,DC=fr", 
+              :attr_login => "uid", 
+              :attr_firstname => "givenName",
+              :attr_lastname  =>  "sn", 
+              :attr_mail => "mail", 
+              :onthefly_register => TRUE, 
+              :tls => TRUE , 
+              :filter => 'supannAffectation', 
+              #to add in db 
+              :filter_value => "SI*"
+    end
+    
+    
+######################## =>       CURSUS
     
    say_with_time "Création de la table Cursus" do
     # Cursus
