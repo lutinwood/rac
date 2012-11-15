@@ -6,8 +6,8 @@ require 'net/ldap'
 class Cas < ActiveRecord::Base
   
   unloadable
-  has_many :users
-  validates_presence_of :url,:ldap,:domain, :username, :password, :port
+ # has_many :users
+# validates_presence_of :url,:ldap,:domain, :username, :password, :port
  
  # Fonctions
   # get_data(login,from)
