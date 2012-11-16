@@ -92,9 +92,6 @@ cas_id = 1
  end     
 
   def statut(user,entry)
-   
-   #
-   user.aua_statut = entry.auaStatut.is_a?(Array) ? entry.auaStatut.first : entry.auaStatut
     
     if  entry.auaStatut == 'etu'
       user.aua_millesime = entry.auaEtapeMillesime.is_a?(Array) ? entry.auaEtapeMillesime.first : entry.auaEtapeMillesime
