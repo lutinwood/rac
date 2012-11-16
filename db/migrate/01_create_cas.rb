@@ -23,7 +23,6 @@ class CreateCas < ActiveRecord::Migration
 
 ########################## =>     LDAP
    
-      
     say_with_time "Création de l'entrée LDAP" do
       AuthSourceLdap.create :name => "Castor2",
               :host => 'castor2.info-ua',
@@ -38,9 +37,7 @@ class CreateCas < ActiveRecord::Migration
               :onthefly_register => TRUE, 
               :tls => TRUE , 
               :filter => 'supannAffectation=SI*', 
-   
     end
-    
     
 ######################## =>       CURSUS
    
@@ -77,8 +74,6 @@ end
 	# Cursus
     	drop_table :cursus
 end
-  
- 
   
 	say_with_time "Suppresion des champs de la table USERS" do
     	# User
