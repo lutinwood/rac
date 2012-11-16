@@ -42,7 +42,7 @@ cas_id = 1
       :password => ldap_data.account_password
     }
      
-    ldap_req = Net::LDAP::new :host => ldap_data.ldap, :port => ldap_data.port , :auth => auth
+    ldap_req = Net::LDAP::new :host => ldap_data.host, :port => ldap_data.port , :auth => auth
     filter = Net::LDAP::Filter.eq(ldap_data.attr_login, login)
     # Teacher
     labo = Net::LDAP::Filter.eq(ldap_data.filter, ldap_data.filter_value)
