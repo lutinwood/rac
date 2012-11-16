@@ -96,9 +96,9 @@ cas_id = 1
    #
    user.aua_statut = entry.auaStatut.is_a?(Array) ? entry.auaStatut.first : entry.auaStatut
     
-    if user.aua_statut == 'etu'
+    if  entry.auaStatut == 'etu'
       user.aua_millesime = entry.auaEtapeMillesime.is_a?(Array) ? entry.auaEtapeMillesime.first : entry.auaEtapeMillesime
-      elsif user.aua_statut == 'perso'
+      elsif entry.auaStatut == 'perso'
         user.supann_affectation_last = entry.supannAffectation.is_a?(Array) ? entry.supannAffectation.last : entry.supannAffectation
         else
           'Statut inconnu ! #{eval.user.aua_statut}'
