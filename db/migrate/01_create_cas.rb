@@ -22,7 +22,7 @@ class CreateCas < ActiveRecord::Migration
     end
 
 ########################## =>     LDAP
-    add_column :auth_sources, :filter_value, :string  
+   
       
     say_with_time "Création de l'entrée LDAP" do
       AuthSourceLdap.create :name => "Castor2",
@@ -37,9 +37,8 @@ class CreateCas < ActiveRecord::Migration
               :attr_mail => "mail", 
               :onthefly_register => TRUE, 
               :tls => TRUE , 
-              :filter => 'supannAffectation', 
-              #to add in db 
-              :filter_value => "SI*"
+              :filter => 'supannAffectation=SI*', 
+   
     end
     
     
@@ -79,7 +78,7 @@ end
     	drop_table :cursus
 end
   
-  remove_column :auth_sources, :filter_value
+ 
   
 	say_with_time "Suppresion des champs de la table USERS" do
     	# User
