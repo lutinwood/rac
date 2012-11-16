@@ -42,7 +42,10 @@ module UserPatch
 # will be replaced by a role 
     
     ## TOKEEP
-    
+     def staff?
+      @staff = (!self.cas.nil? and self.cas.is_staff(self.login)) if @staff.nil?
+      return @staff
+    end
     # If cas user do not allow to change the password 
     def change_password_allowed_with_cas?
       return false if !self.cas.nil?
