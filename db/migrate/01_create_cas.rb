@@ -36,7 +36,7 @@ class CreateCas < ActiveRecord::Migration
               :attr_mail => "mail", 
               :onthefly_register => TRUE, 
               :tls => TRUE , 
-              :filter => 'supannAffectation=SI*', 
+              :filter => 'supannAffectation=SI*'
     end
     
 ######################## =>       CURSUS
