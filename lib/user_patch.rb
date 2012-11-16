@@ -51,7 +51,20 @@ module UserPatch
       return false if !self.cas.nil?
       return change_password_allowed_without_cas?
     end
-
   end
+end
 
+module AnonymousUserPatch
+
+  def self.included(base) # :nodoc:
+    base.send(:include, InstanceMethods)
+    base.class_eval do
+      unloadable
+    end
+  end
+  module InstanceMethods
+    def staff?
+      return false
+    end
+  end
 end
