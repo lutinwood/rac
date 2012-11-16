@@ -45,7 +45,7 @@ cas_id = 1
     ldap_req = Net::LDAP::new :host => ldap_data.host, :port => ldap_data.port , :auth => auth
     filter = Net::LDAP::Filter.eq(ldap_data.attr_login, login)
     # Teacher
-    labo = Net::LDAP::Filter.eq(ldap_data.filter, ldap_data.filter_value)
+    labo = ldap_data.ldap_filter
     real_filter = filter & labo
     
     # Informatin to gather from
