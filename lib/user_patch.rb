@@ -22,7 +22,13 @@ module UserPatch
   end
   
   module InstanceMethods
-
+ def allowed_to_with_staff?(action, project, options={})
+   if action == :add_project or (action.is_a?(Hash) and action[:controller] == 'projects' and (action[:action] == 'new' or action[:action] == 'create'))
+      return true
+    else
+      return false
+   end
+ end
 # old fonction  ==> allowed_to_with_staff?(action, project, options={})
 # RETURN ==> boolean
 # TRUE if 
