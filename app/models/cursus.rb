@@ -19,7 +19,7 @@ class Cursus < ActiveRecord::Base
                         :status  => :created, :location => @cursus }
          else
            format.html { render :action => "new" }
-           format.json { render :json => @post.errors, 
+           format.json { render :json => @cursus.errors, 
               :status => :unprocessable_entity }
       end 
    end
@@ -39,7 +39,7 @@ class Cursus < ActiveRecord::Base
     end
   end
   def destroy
-  @cursus = Post.find(params[:id])
+  @cursus = Cursus.find(params[:id])
   @cursus.destroy
  
   respond_to do |format|

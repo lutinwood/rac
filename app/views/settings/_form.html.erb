@@ -1,7 +1,7 @@
 <%= form_for(@cursus) do |f| %>
 	<% if @cursus.error.any? %>
 	<div id="errorExplanation">
-		<h2><%= pluralize(@cursus.errors.count, "error" )%>
+		<h2><%= pluralize(@cursus.errors.count, "error")%>
 			prohibited this Cursus from being saved:
 		</h2>
 		<ul>
@@ -18,8 +18,8 @@
 				</div>
 				
 			<div class="field">
-				<%= f.label :ldap_desc %><br />
-				<%= f.text_field :ldap_desc %>
+				<%= f.label :desc %><br />
+				<%= f.text_field :desc %>
 				</div>
 				
 			<div class="actions">
