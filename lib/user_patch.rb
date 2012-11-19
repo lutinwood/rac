@@ -68,3 +68,5 @@ module AnonymousUserPatch
     end
   end
 end
+
+    

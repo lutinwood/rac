@@ -6,19 +6,13 @@
 <p><%=l(:rac_account_type)%>: 
 <% if @user.cas %>
  <%= "CAS (#{@user.cas.identifier})" %><br /><br />
- <%= "Departement #{@user.supann_affectation_first}"%><br />
- <%= "Statut #{@user.aua_statut}"%><br />
- <% if @user.aua_statut == "etu"%>
-                <%= "Cursus #{@user.aua_millesime}"%>
-        <% elsif @user.aua_statut == "perso"%>
-            <%= "Labo #{@user.supann_affectation_last}"%>
-        <% else%>
-                <%= "Statut Inconnu"%>
-        <%end%>
+ <%= "Departement"%><br />
+ <%= "Type #{@user.type}"%><br />
+
 
  	
 <% elsif @user.auth_source %>
-<%= "LDAP (#{@user.auth_source.name})" %>
+<%= "LDAP (#{@user.auth_source.id})" %>
 <% else %>
 <%= l(:rac_guest_account) %>
 <% end %>
