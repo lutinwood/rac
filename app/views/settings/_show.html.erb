@@ -1,0 +1,22 @@
+
+<h1>Listing Cursuss</h1>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Title</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  <% @Cursus.each do |cursus| %>
+  	
+<tr>
+    <td><%= cursus.ldap_desc %></td>
+    <td><%= cursus.desc %></td>
+    <td><%= link_to 'Show', cursus %></td>
+    <td><%= link_to 'Edit', edit_cursus_path(cursus) %></td>
+    <td><%= link_to 'Destroy', cursus, :confirm => 'Are you sure?',
+                                     :method => :delete %></td>
+  </tr>
+<% end %>
+</table>

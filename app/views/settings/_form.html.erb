@@ -1,0 +1,28 @@
+<%= form for(@cursus) do |f| %>
+	<% if @cursus.error.any? %>
+	<div id="errorExplanation">
+		<h2><%= plutalize(@cursus.error.count, "error" )%>
+			prohibited this Cursus from being saved:
+		</h2>
+		<ul>
+			<% @cursus.errors.full_messages.each do |msg| %>
+			<li><%= msg %></li>
+			<% end %>
+			</ul>
+			</div>
+			<% end %>
+			
+			<div class="field">
+				<%= f.label :ldap_desc %><br />
+				<%= f.text_field :ldap_desc %>
+				</div>
+				
+			<div class="field">
+				<%= f.label :ldap_desc %><br />
+				<%= f.text_field :ldap_desc %>
+				</div>
+				
+			<div class="actions">
+				<%= f.submit %>
+				</div>
+<% end%>
