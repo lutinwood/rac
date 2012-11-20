@@ -1,17 +1,5 @@
-<%= form_for(@cursus) do |f| %>
-
-			
-			<div class="field">
-				<%= f.label :ldap_desc %><br />
-				<%= f.text_field :ldap_desc %>
-				</div>
-				
-			<div class="field">
-				<%= f.label :desc %><br />
-				<%= f.text_field :desc %>
-				</div>
-				
-			<div class="actions">
-				<%= f.submit %>
-				</div>
-<% end%>
+<% form_for @cursus, :html => {:class => "ajaxForm"} do |f| -%>
+	<%= f.text_field :ldap_desc %>
+	<%= f.text_field :desc %>
+	<%= f.submit("Validation") %>
+	<% end %>
