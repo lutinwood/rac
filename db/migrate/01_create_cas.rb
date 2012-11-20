@@ -59,7 +59,7 @@ class CreateCas < ActiveRecord::Migration
     say_with_time "Ajout des champs de la table Users" do 
     add_column :users, :cas_id, :integer
     add_column :users, :role, :string
-    add_column :users, :cursus_id, :integer
+    add_column :users, :formation_id, :integer
   	end
 	end
 
@@ -79,7 +79,7 @@ end
     	# User
     	remove_column :users, :cas_id
 	remove_column :users, :role
-   	remove_column :users, :cursus_id
+   	remove_column :users, :formation_id
 		end  
 	end
 end
