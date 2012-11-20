@@ -1,17 +1,7 @@
-<%= form_for(@cursus) do |f| %>
-
-			
-			<div class="field">
+<%= form_for @cursus do |f| %>
 				<%= f.label :ldap_desc %><br />
 				<%= f.text_field :ldap_desc %>
-				</div>
-				
-			<div class="field">
 				<%= f.label :desc %><br />
 				<%= f.text_field :desc %>
-				</div>
-				
-			<div class="actions">
 				<%= f.submit %>
-				</div>
 <% end%>
