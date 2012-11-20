@@ -1,15 +1,8 @@
-<<<<<<< HEAD
-<%= form_for @cursus do |f| %>
-				<%= f.label :ldap_desc %><br />
+<%= form_for @formation do |f| %>
+<!--form_for @cursus, :html => {:class => "ajaxForm"} do |f| -->	
+<%= f.label :ldap_desc %><br />
 				<%= f.text_field :ldap_desc %>
 				<%= f.label :desc %><br />
 				<%= f.text_field :desc %>
 				<%= f.submit %>
 <% end%>
-=======
-<% form_for @cursus, :html => {:class => "ajaxForm"} do |f| -%>
-	<%= f.text_field :ldap_desc %>
-	<%= f.text_field :desc %>
-	<%= f.submit("Validation") %>
-	<% end %>
->>>>>>> 066930fe01358eb9dee565f1b80fc1d7a0d4fff2

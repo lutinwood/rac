@@ -39,18 +39,18 @@ class CreateCas < ActiveRecord::Migration
               :filter => 'supannAffectation=SI*'
     end
     
-######################## =>       CURSUS
+######################## =>       FORMATION
    
-   say_with_time "Création de la table Cursus" do
+   say_with_time "Création de la table Formation" do
     # Cursus
-    create_table "cursus", :force => true do |t|
+    create_table "formation", :force => true do |t|
       t.column "ldap_desc", :string
       t.column "desc", :string
     	end
     end
     
-    say_with_time "Création de l'entrée CURSUS" do
-    Cursus.create :ldap_desc  =>"3M1INF1",
+    say_with_time "Création de l'entrée Formation" do
+    Formation.create :ldap_desc  =>"3M1INF1",
                   :desc =>"M1 Informatique"
     end    
     
@@ -72,7 +72,7 @@ end
 	
 	say_with_time "Suppresion de la table CURSUS" do    
 	# Cursus
-    	drop_table :cursus
+    	drop_table :formation
 end
   
 	say_with_time "Suppresion des champs de la table USERS" do
