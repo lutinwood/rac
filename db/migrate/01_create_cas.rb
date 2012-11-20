@@ -43,7 +43,7 @@ class CreateCas < ActiveRecord::Migration
    
    say_with_time "Création de la table Formation" do
     # Cursus
-    create_table "formation", :force => true do |t|
+    create_table "formations", :force => true do |t|
       t.column "ldap_desc", :string
       t.column "desc", :string
     	end
@@ -72,14 +72,14 @@ end
 	
 	say_with_time "Suppresion de la table CURSUS" do    
 	# Cursus
-    	drop_table :formation
+    	drop_table :formations
 end
   
 	say_with_time "Suppresion des champs de la table USERS" do
     	# User
     	remove_column :users, :cas_id
 	remove_column :users, :role
-   	remove_column :users, :formation_id
+   	remove_column :users, :formations_id
 		end  
 	end
 end
