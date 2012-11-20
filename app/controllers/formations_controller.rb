@@ -15,7 +15,7 @@ class FormationsController < ApplicationController
     
     def update 
        @formation = Formation.find(params[:id])
-      
+      redirect_to 'settings/plugin/rac'
     end
     
     def destroy 

@@ -1,8 +1,15 @@
-<%= form_for @formation do |f| %>
-<!--form_for @cursus, :html => {:class => "ajaxForm"} do |f| -->	
-<%= f.label :ldap_desc %><br />
+<% @formations = Formation.all %>
+
+<% @formations.each do |formation| %>
+<% @formation = Formation.find_by_id(formation.id) %>
+
+	<% form_for @formation, :url => {:controller => 'formations', :action => 'update' } do |f| %>
+	<!--form_for @cursus, :html => {:class => "ajaxForm"} do |f| -->	
+	<%= f.label :ldap_desc %><br />
 				<%= f.text_field :ldap_desc %>
 				<%= f.label :desc %><br />
 				<%= f.text_field :desc %>
 				<%= f.submit %>
-<% end%>
+	<% end%>
+<% end %>
+
