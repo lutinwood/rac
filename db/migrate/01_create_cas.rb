@@ -79,7 +79,7 @@ end
     	# User
     	remove_column :users, :cas_id
 	remove_column :users, :role
-   	remove_column :users, :formations_id
+   	remove_column :users, :formation_id
 		end  
 	end
 end
