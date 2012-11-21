@@ -36,7 +36,7 @@ def invalid_user
           redirect_to :controller => "account", :action => "register"
 end
 
-def existing_user 
+def existing_user(user)
     reset_session
         flash[:error] = l(:rac_userid_exists, user.login)
         redirect_to :controller => "account", :action => "register"
@@ -54,7 +54,7 @@ end
           self.invalid_user
         end
       elsif (!user.cas or user.cas.url != @cas.url)  # On verifie que l'on provient toujours du meme CAS
-        self.existing_user
+        self.existing_user(user)
       else
         self.logged_user = user
         call_hook(:controller_account_success_authentication_after, {:user => user })
