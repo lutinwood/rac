@@ -78,7 +78,7 @@ end
 	say_with_time "Suppresion des champs de la table USERS" do
     	# User
     	remove_column :users, :cas_id
-	remove_column :users, :role
+	   remove_column :users, :role
    	remove_column :users, :formation_id
 		end  
 	end
