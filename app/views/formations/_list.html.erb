@@ -1,0 +1,18 @@
+<h1>Listing formation</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+  </tr>
+
+<% @formations.each do |formation| %>
+  <tr>
+    <td><%=h formation.ldap_desc %></td>
+    <td><%=h formation.desc %></td>
+    <td><%= link_to 'Show', formation %></td>
+    <td><%= link_to 'Edit', edit_formation_path(formation) %></td>
+    <td><%= link_to 'Destroy', formation, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
