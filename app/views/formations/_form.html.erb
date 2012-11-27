@@ -14,10 +14,10 @@
   </tr>
 <% end %>
 <% if !@user.nil? %>
-        <%= render 'update_new' %>
+        <%= render 'new' %>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'Formation', :controller => "formation", :action => "full_update", :state => 'new' %>
+<%= link_to 'Formation', :controller => "formation", :action => "update", :state => 'new' %>

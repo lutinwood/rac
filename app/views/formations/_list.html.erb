@@ -1,15 +1,15 @@
-<h1>Listing formation</h1>
+<h2>_list</h2>
 
 <table>
   <tr>
-    <th>Name</th>
-    <th>Email</th>
+    <th>Code LDAP</th>
+    <th>Description</th>
   </tr>
 
 <% @formations.each do |formation| %>
   <tr>
     <td><%=h formation.ldap_desc %></td>
-    <td><%=h formation.desc %></td>w
+    <td><%=h formation.desc %></td>
 
   </tr>
 <% end %>
