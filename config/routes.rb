@@ -10,7 +10,9 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'sso/:cas_id', :controller => "sso", :action => "login", :cas_id => /.+/
 
 
-#map.connect 'settings/plugin/rac' , :controller => "formations", :action => "update"
+#resources :formations
+
+ map.connect 'settings/plugin/rac' , :controller => "formations", :action => "update"
 # Route par default
 #map.connect ':controller/:action/:id'
 
