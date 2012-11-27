@@ -10,7 +10,6 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'sso/:cas_id', :controller => "sso", :action => "login", :cas_id => /.+/
 
 map.formation 'formations', :controller => "formations", :action => "index"
-
 map.formation 'formations/new', :controller => "formations", :action => "new"
 map.formation 'formations/update', :controller => "formations", :action => "update"
 #resources :formations
