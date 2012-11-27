@@ -6,7 +6,7 @@ class FormationsController < ApplicationController
     end
     
     def new
-      @formation = Formation.new
+      @formation = Formation.all
     end
     
     def create
@@ -16,6 +16,9 @@ class FormationsController < ApplicationController
     def update 
      #  @formation = Formation.find(params[:id])
       @formations = Formation.all
+	respond_to do |format|
+		format.html { render :action => :new }
+	end
     end
     
     def destroy 
