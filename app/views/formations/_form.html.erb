@@ -1,0 +1,23 @@
+<table>
+  <tr>
+    <th>Code LDAP</th><th>Description</th><th>Liens</th>
+  </tr>
+
+<% @formations.each do |formation| %>
+  <tr>
+        <% form_for :formation, formation, :url => { :action => "update", :id => formation.id } do |f| %>
+    <td><%=f.text_field :ldap_desc %></td>
+    <td><%=f.text_field :desc %></td>
+<td><%= f.submit 'Update' %></td>
+        <%end %>
+    <td><%= link_to 'Destroy',:controller => "formations", :action => "destroy", :id => formation.id , :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+<% if !@user.nil? %>
+        <%= render 'update_new' %>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Formation', :controller => "formation", :action => "full_update", :state => 'new' %>

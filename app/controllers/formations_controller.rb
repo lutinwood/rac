@@ -3,10 +3,17 @@ class FormationsController < ApplicationController
     
     def index
       @formations = Formation.all
+	respond_to do |format|
+	format.html
+	end 
+
     end
     
     def new
       @formation = Formation.all
+	respond_to do |format|
+	format.html# {redirect_to '/settings/plugin/rac'}
+	end
     end
     
     #POST /formation
@@ -19,9 +26,11 @@ class FormationsController < ApplicationController
         end
       end
     end
-    
-    def full_update 
-        @formations = Formation.all
+ 
+
+# PUT /formation/1  
+    def update 
+        @formations = Formation.find(params[:id])
           #Nouvelle entrée
             if params[:state].eql? "new"
                 @formation = Formation.new
@@ -32,12 +41,7 @@ class FormationsController < ApplicationController
     end
     
     # PUT /formation/1
-    def update 
-     @formation = Formation.find(params[:id])
-     	  respond_to do |format|
-		      format.html { redirect_to(:action => 'full_update', :notice => 'Formation ws successfully updated. ') }
-	      end
-    end
+  
 
 	def update_formation
 	 respond_to do |format|
