@@ -20,6 +20,14 @@ class FormationsController < ApplicationController
 		format.html { render :action => :new }
 	end
     end
+
+	def update_formation
+	 respond_to do |format|
+		format.html { redirect_to('/settings/plugin/rac') }
+		end
+	end	
+	
+
     
     def destroy 
         @formation = Formation.find(params[:id])

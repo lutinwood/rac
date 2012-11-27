@@ -1,10 +1,21 @@
 
-<% 
-@formations= Formation.all
- @formations.each do |formation|
- @formation = Formation.find_by_id(formation.id) 
-%>
- <%= formation.desc %>
+<table>
+  <tr>
+    <th>Code Ldap</th>
+    <th>Description</th>
+</tr>
+<% @formations= Formation.all
+ @formations.each do |formation| 
+@formation= Formation.find_by_id(formation.id)%>
+
+<tr>
+	<% form_for(@formation) do |f| %>
+	<td><%= f.text_field :ldap_desc %></td>
+	<td><%= f.text_field :desc %></td>
+	<td><%= f.submit 'Update' %></td>
 <% end %>
-<% form('formation') %>
+</tr>
+<% end %>
+</table>
+
 
