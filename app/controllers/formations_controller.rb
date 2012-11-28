@@ -28,14 +28,20 @@ class FormationsController < ApplicationController
 
   # PUT /formations/1
   def update
-    @formations = Formation.find(params[:id])
+    @formations = Formation.all
+    @formation = Formation.find(params[:id])
     #Nouvelle entrée
     if params[:state].eql? "new"
       @formation = Formation.new
     end
+    
     respond_to do |format|
-      
+      if @formation.update_attributes(params[:formation])
+      @formations = Formation.all
+      format.html #update.html.erb
+      else
       format.html # update.html.erb
+      end
     end
   end
 
