@@ -15,11 +15,11 @@
     <td><%= link_to 'Destroy',:controller => "formations", :action => "destroy", :id => formation.id , :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
-<% if !@formation.nil? %>
+<% if !params[:state].nil? %>
         <%= render 'new' %>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'Formation', :controller => "formation", :action => "update", :state => 'new' %>
+<%= link_to 'Formation', :controller => "formations", :action => "update", :state => 'new' %>

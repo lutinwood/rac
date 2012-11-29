@@ -21,7 +21,8 @@ class FormationsController < ApplicationController
     respond_to do |format|
       if @formation.save
         format.html { redirect_to(:action => 'update')} #update.html.erb
-
+	else
+	format.html { redirect_to(:action => 'update')}
       end
     end
   end
@@ -54,4 +55,3 @@ class FormationsController < ApplicationController
     end
   end
 
-end

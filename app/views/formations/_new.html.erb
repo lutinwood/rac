@@ -1,4 +1,5 @@
 <% formation = Formation.new %>
+<%= formation.inspect %>
 <% form_for :formation, formation, :url => { :action => "create", :id => formation.id } do |f| %>
   <%= f.error_messages %>
  <tr>
