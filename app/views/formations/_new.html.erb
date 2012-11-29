@@ -1,7 +1,5 @@
-<% formation = Formation.new %>
-<%= formation.inspect %>
-<% form_for :formation, formation, :url => { :action => "create", :id => formation.id } do |f| %>
-  <%= f.error_messages %>
+<% @formation = Formation.new %>
+<% form_for(@formation) do |f| %>
  <tr>
 <td><%= f.text_field :ldap_desc%></td>
 <td><%= f.text_field :desc %></td>
